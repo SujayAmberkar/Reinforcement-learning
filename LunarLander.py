@@ -1,15 +1,15 @@
 import gymnasium as gym
-from stable_baselines3 import A2C
+from stable_baselines3 import A2C,DQN
 
 
-env = gym.make("LunarLander-v2",render_mode="human")
+env = gym.make("CartPole-v1",render_mode="human")
 
-model = A2C("MlpPolicy",env,verbose=1)
+model = DQN("MlpPolicy",env,verbose=1)
 
-# model.learn(total_timesteps=250000)
-# model.save('./LanderModel')
+# model.learn(total_timesteps=100000)
+# model.save('./CartDQN')
 
-model = A2C.load('LanderModel')
+model = DQN.load('CartDQN')
 
 observation, info = env.reset(seed=42)
 
