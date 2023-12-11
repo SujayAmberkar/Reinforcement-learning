@@ -1,15 +1,15 @@
 import gymnasium as gym
-from stable_baselines3 import A2C,DQN
+from stable_baselines3 import A2C,DQN,PPO
 
 
-env = gym.make("CartPole-v1",render_mode="human")
+env = gym.make("CartPole-v1",render_mode="rgb_array")
 
-model = DQN("MlpPolicy",env,verbose=1)
+model = A2C("MlpPolicy",env,verbose=1,tensorboard_log='./DQNlogs_tensor')
 
-# model.learn(total_timesteps=100000)
-# model.save('./CartDQN')
+model.learn(total_timesteps=100000)
+model.save('./CartA2C')
 
-model = DQN.load('CartDQN')
+# model = A2C.load('CartDQN')
 
 observation, info = env.reset(seed=42)
 
